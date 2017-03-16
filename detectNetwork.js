@@ -16,6 +16,7 @@ var detectNetwork = function(cardNumber) {
   var networkTwoCode = cardNumber.slice(0,2);
   var networkThreeCode = cardNumber.slice(0,3);
   var networkFourCode = cardNumber.slice(0,4);
+  var networkSixCode = cardNumber.slice(0,6);
   var network = '';
 
   var DinersClubCodes = ['38','39'];
@@ -23,29 +24,46 @@ var detectNetwork = function(cardNumber) {
   var MasterCardCodes = ['51','52','53','54','55'];
   var DiscoverCodes = ['6011','644','645','646','647','648','649','65'];
   var MaestroCodes = ['5018','5020','5038','6304'];
+  var ChinaUnionPayCodes = ['624','625','626','6282','6283','6284','6285',
+                    '6286','6287','6288']; // 622126-622925
+  var SwitchCode = ['4903','4905','4911','4936','564182','633110',
+                    '6333','6759'];
 
   var VisaLength = [13,16,19];
   var DiscoverLength = [16,19];
   var MaestroLength = [12,13,14,15,16,17,18,19];
+  var ChinaUnionPayLength = [16,17,18,19];
+  var SwitchLength = [16,18,19];
 
     // Diner's Club
   if (DinersClubCodes.includes(networkTwoCode)) {
     network = cardNumber.length === 14 ? "Diner's Club" : null;
-    //American Express
+    // American Express
   } else if (AmericanExpressCodes.includes(networkTwoCode)) {
       network = cardNumber.length === 15 ? "American Express" : null;
-    //Visa
-  } else if (cardNumber[0] === '4') {
+    // Switch
+  } else if(SwitchCode.includes(networkFourCode) ||
+            SwitchCode.includes(networkSixCode)) {
+      network = SwitchLength.includes(cardNumber.length) ? 'Switch' : null;
+    // Visa
+  } else if (cardNumber[0] === '4' && network !== 'Switch') {
       network = VisaLength.includes(cardNumber.length) ? 'Visa' : null;
-    //MasterCard
+    // MasterCard
   } else if (MasterCardCodes.includes(networkTwoCode)) {
       network = cardNumber.length === 16 ? "MasterCard" : null;
-    //Discover
-  } else if (DiscoverCodes.includes(networkTwoCode) || DiscoverCodes.includes(networkThreeCode) || DiscoverCodes.includes(networkFourCode)) {
+    // Discover
+  } else if (DiscoverCodes.includes(networkTwoCode) ||
+             DiscoverCodes.includes(networkThreeCode) ||
+             DiscoverCodes.includes(networkFourCode)) {
       network = DiscoverLength.includes(cardNumber.length) ? 'Discover' : null;
-    //Maestro
+    // Maestro
   } else if (MaestroCodes.includes(networkFourCode)) {
       network = MaestroLength.includes(cardNumber.length) ? 'Maestro' : null;
+    // China UnionPay
+  } else if((networkSixCode >= 622126 && networkSixCode <= 622925) ||
+             ChinaUnionPayCodes.includes(networkThreeCode) ||
+             ChinaUnionPayCodes.includes(networkFourCode)) {
+      network = ChinaUnionPayLength.includes(cardNumber.length) ? 'China UnionPay' : null;
   }
 
   return network;
@@ -53,29 +71,39 @@ var detectNetwork = function(cardNumber) {
 
 // console.log(detectNetwork('38345678901234'));
 // console.log(detectNetwork('39345678901234'));
-// //(Diner's Club)
+// =>(Diner's Club)
 // console.log(detectNetwork('343456789012345'));
 // console.log(detectNetwork('373456789012345'));
-// //(American Express)
+// => (American Express)
 // console.log(detectNetwork('4123456789012'));
 // console.log(detectNetwork('4123456789012345'));
 // console.log(detectNetwork('4123456789012345678'));
-// //(Visa)
+// => (Visa)
 // console.log(detectNetwork('5112345678901234'));
 // console.log(detectNetwork('5212345678901234'));
 // console.log(detectNetwork('5312345678901234'));
 // console.log(detectNetwork('5412345678901234'));
 // console.log(detectNetwork('5512345678901234'));
-// //(MasterCard)
+// => (MasterCard)
 // console.log(detectNetwork('6011567890123456'));
 // console.log(detectNetwork('6011567890123456789'));
 // console.log(detectNetwork('6511567890123456'));
 // console.log(detectNetwork('6511567890123456789'));
 // console.log(detectNetwork('6464567890123456'));
 // console.log(detectNetwork('6464567890123456789'));
-// //(Discover)
+// => (Discover)
 // console.log(detectNetwork('501856789012'));
 // console.log(detectNetwork('5020567890123456789'));
 // console.log(detectNetwork('503856789012'));
 // console.log(detectNetwork('6304567890123456789'));
-// //(Maestro)
+// => (Maestro)
+// console.log(detectNetwork('6244567890123456'));
+// console.log(detectNetwork('6221267890123456'));
+// console.log(detectNetwork('62233378901234567'));
+// console.log(detectNetwork('62733378901234567'));
+// => (China)
+// console.log(detectNetwork('4903567890123456'));
+// console.log(detectNetwork('564182789012345678'));
+// console.log(detectNetwork('6759567890123456789'));
+// console.log(detectNetwork('6759567890123456789'));
+// => (Switch)
