@@ -207,9 +207,9 @@ describe('Maestro', function() {
 describe('China UnionPay', function(){
   // 624-626
   for (var prefix = 624; prefix <= 626; prefix++) {
-    console.log('TEST');
-    console.log(prefix);
-    console.log(prefix + '567890123456');
+    // console.log('TEST');
+    // console.log(prefix);
+    // console.log(prefix + '567890123456');
     (function(prefix) {
       it('has a prefix of ' + prefix + ' and a length of 16', function() {
         detectNetwork(prefix + '4567890123456').should.equal('China UnionPay');
@@ -218,7 +218,7 @@ describe('China UnionPay', function(){
         detectNetwork(prefix + '45678901234567').should.equal('China UnionPay');
       })
       it('has a prefix of ' + prefix + ' and a length of 18', function() {
-        detectNetwork(prefix + '45678901234568').should.equal('China UnionPay');
+        detectNetwork(prefix + '456789012345678').should.equal('China UnionPay');
       })
       it('has a prefix of ' + prefix + ' and a length of 19', function() {
         detectNetwork(prefix + '4567890123456789').should.equal('China UnionPay');
@@ -228,9 +228,9 @@ describe('China UnionPay', function(){
   // 6282-6288
   for (var prefix = 6282; prefix <= 6288; prefix++) {
     (function(prefix) {
-      console.log('TEST');
-      console.log(prefix);
-      console.log(prefix + '567890123456');
+      // console.log('TEST');
+      // console.log(prefix);
+      // console.log(prefix + '567890123456');
       it('has a prefix of ' + prefix + ' and a length of 16', function() {
         detectNetwork(prefix + '567890123456').should.equal('China UnionPay');
       })
@@ -238,7 +238,7 @@ describe('China UnionPay', function(){
         detectNetwork(prefix + '5678901234567').should.equal('China UnionPay');
       })
       it('has a prefix of ' + prefix + ' and a length of 18', function() {
-        detectNetwork(prefix + '5678901234568').should.equal('China UnionPay');
+        detectNetwork(prefix + '56789012345678').should.equal('China UnionPay');
       })
       it('has a prefix of ' + prefix + ' and a length of 19', function() {
         detectNetwork(prefix + '567890123456789').should.equal('China UnionPay');
@@ -248,9 +248,9 @@ describe('China UnionPay', function(){
   // 622126-622925
   for (var prefix = 622126; prefix <= 622925; prefix++) {
     (function(prefix) {
-      console.log('TEST');
-      console.log(prefix);
-      console.log(prefix + '7890123456');
+      // console.log('TEST');
+      // console.log(prefix);
+      // console.log(prefix + '7890123456');
       it('has a prefix of ' + prefix + ' and a length of 16', function() {
         detectNetwork(prefix + '7890123456').should.equal('China UnionPay');
       })
@@ -258,7 +258,7 @@ describe('China UnionPay', function(){
         detectNetwork(prefix + '78901234567').should.equal('China UnionPay');
       })
       it('has a prefix of ' + prefix + ' and a length of 18', function() {
-        detectNetwork(prefix + '78901234568').should.equal('China UnionPay');
+        detectNetwork(prefix + '789012345678').should.equal('China UnionPay');
       })
       it('has a prefix of ' + prefix + ' and a length of 19', function() {
         detectNetwork(prefix + '7890123456789').should.equal('China UnionPay');
@@ -272,9 +272,9 @@ describe('Switch', function(){
   var SwitchSixCode = ['564182','633110'];
 
   SwitchFourCode.forEach(function(prefix){
-    console.log('TEST');
-    console.log(prefix);
-    console.log(prefix + '567890123456');
+    // console.log('TEST');
+    // console.log(prefix);
+    // console.log(prefix + '567890123456');
     it('has a prefix of ' + prefix + ' and a length of 16', function() {
       detectNetwork(prefix + '567890123456').should.equal('Switch');
     })
@@ -282,14 +282,14 @@ describe('Switch', function(){
       detectNetwork(prefix + '56789012345678').should.equal('Switch');
     })
     it('has a prefix of ' + prefix + ' and a length of 19', function() {
-      detectNetwork(prefix + '56789012345689').should.equal('Switch');
+      detectNetwork(prefix + '567890123456789').should.equal('Switch');
     })
   });
 
   SwitchSixCode.forEach(function(prefix){
-    console.log('TEST');
-    console.log(prefix);
-    console.log(prefix + '7890123456');
+    // console.log('TEST');
+    // console.log(prefix);
+    // console.log(prefix + '7890123456');
     it('has a prefix of ' + prefix + ' and a length of 16', function() {
       detectNetwork(prefix + '7890123456').should.equal('Switch');
     })
@@ -297,7 +297,7 @@ describe('Switch', function(){
       detectNetwork(prefix + '789012345678').should.equal('Switch');
     })
     it('has a prefix of ' + prefix + ' and a length of 19', function() {
-      detectNetwork(prefix + '789012345689').should.equal('Switch');
+      detectNetwork(prefix + '7890123456789').should.equal('Switch');
     })
   });
 

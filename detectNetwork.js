@@ -100,8 +100,8 @@ var detectNetwork = function(cardNumber) {
 // console.log(detectNetwork('6244567890123456'));
 // console.log(detectNetwork('6221267890123456'));
 // console.log(detectNetwork('62233378901234567'));
-// console.log(detectNetwork('62733378901234567'));
-// => (China)
+// console.log(detectNetwork('62292378901234567'));
+// => (China UnionPay)
 // console.log(detectNetwork('4903567890123456'));
 // console.log(detectNetwork('564182789012345678'));
 // console.log(detectNetwork('6759567890123456789'));
